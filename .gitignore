@@ -52,4 +52,4 @@ local.properties
 .texlipse
 
 ## secret settings
-src/resources/secrets.properties
+secrets.properties

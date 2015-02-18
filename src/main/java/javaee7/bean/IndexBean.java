@@ -22,8 +22,7 @@ public class IndexBean implements Serializable{
 	
 	@PostConstruct
 	public void initialize() {
-		Hotel[] hotels = RakutenTravelApi.findHotels(0, 0);
-		this.hotels.addAll(Arrays.asList(hotels));
+		this.hotels = RakutenTravelApi.findHotels(0, 0);
 	}
 
 	public ArrayList<Hotel> getHotels() {

@@ -1,5 +1,7 @@
 package javaee7.service;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -29,7 +31,8 @@ public class HotelService {
     		@DefaultValue("0.0") @QueryParam("lat") double lat, 
     		@DefaultValue("0.0") @QueryParam("lng") double lng){
     	
-    	return RakutenTravelApi.findHotels(lat, lng);
+    	ArrayList<Hotel> hotels =  RakutenTravelApi.findHotels(lat, lng);
+    	return (Hotel[]) hotels.toArray();
     }
 
 }
