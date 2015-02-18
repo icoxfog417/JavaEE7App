@@ -7,7 +7,7 @@
 <body>
 	<ui:composition template="./templates/template.xhtml">
 		<ui:define name="content">
-			<h:dataTable value="#{HotelBean.hotels}" var="h">
+			<h:dataTable value="#{IndexBean.hotels}" var="h">
 				<h:column>#{h.hotelNo}</h:column>
 				<h:column>#{h.hotelName}</h:column>
 			</h:dataTable>

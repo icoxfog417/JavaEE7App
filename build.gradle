@@ -1,0 +1,41 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+
+def javaVersion = 1.8
+def defaultEncoding = 'UTF-8'
+
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+webAppDirName = 'WebContent'
+
+tasks.withType(AbstractCompile) each { it.options.encoding = defaultEncoding }
+
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/main/java/resources'
+        }
+    }
+}
+
+eclipse {
+	pathVariables 'GRADLE_USER_HOME': gradle.gradleUserHomeDir
+}
+
+javadoc {
+    options.locale = 'en_US'
+}
+
+repositories {
+   mavenCentral()
+}
+
+dependencies {
+	compile 'com.fasterxml.jackson.core:jackson-core:2.5.1'
+	compile 'org.apache.httpcomponents:httpclient:4.4'
+    providedCompile 'javax:javaee-api:7.0'
+    providedCompile 'org.projectlombok:lombok:1.16.2'
+    testCompile 'junit:junit:4.11'
+}

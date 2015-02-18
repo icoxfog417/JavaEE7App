@@ -1,4 +1,4 @@
-package javaee7.service;
+package javaee7.service.api;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import javaee7.model.Hotel;
 
-public class RakutenTravelResource {
+public class RakutenTravelApi {
 	
 	public static Hotel[] findHotels(double lat, double lng){
     	ResourceBundle resouce = ResourceBundle.getBundle("resources.secrets");

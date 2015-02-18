@@ -8,23 +8,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javaee7.service.HotelService;
 import javaee7.model.Hotel;
+import javaee7.service.api.RakutenTravelApi;
 
-
-@Named("HotelBean")
+@Named("IndexBean")
 @RequestScoped
-public class HotelBean implements Serializable{
+public class IndexBean implements Serializable{
 
 	private ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 	
-	public HotelBean(){
+	public IndexBean(){
 	}
 	
 	@PostConstruct
 	public void initialize() {
-		HotelService service = new HotelService();
-		Hotel[] hotels = service.find(0, 0);
+		Hotel[] hotels = RakutenTravelApi.findHotels(0, 0);
 		this.hotels.addAll(Arrays.asList(hotels));
 	}
 

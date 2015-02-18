@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import javaee7.model.Hotel;
+import javaee7.service.api.RakutenTravelApi;
 
 /**
  * Session Bean implementation class HotelService
@@ -28,7 +29,8 @@ public class HotelService {
     		@DefaultValue("0.0") @QueryParam("lat") double lat, 
     		@DefaultValue("0.0") @QueryParam("lng") double lng){
     	
-    	return RakutenTravelResource.findHotels(lat, lng);
+    	return RakutenTravelApi.findHotels(lat, lng);
     }
 
 }
+
