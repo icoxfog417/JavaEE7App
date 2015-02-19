@@ -32,7 +32,7 @@ public class HotelService {
     		@DefaultValue("0.0") @QueryParam("lng") double lng){
     	
     	ArrayList<Hotel> hotels =  RakutenTravelApi.findHotels(lat, lng);
-    	return (Hotel[]) hotels.toArray();
+    	return hotels.toArray(new Hotel[hotels.size()]);
     }
 
 }

@@ -1,1 +1,16 @@
 @CHARSET "UTF-8";
+
+body {
+	font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.main-content {
+	height:600px;	
+}
+
+.location{
+	display:none;
+
+#map{
+	width: 100%;
+}

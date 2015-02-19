@@ -2,16 +2,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
+      xmlns:h="http://java.sun.com/jsf/html">
 <body>
 	<ui:composition template="./templates/template.xhtml">
-		<ui:define name="content">
-			<h:dataTable value="#{IndexBean.hotels}" var="h">
-				<h:column>#{h.hotelNo}</h:column>
-				<h:column>#{h.hotelName}</h:column>
-			</h:dataTable>
+		<ui:define name="header">
+			<title>JavaEE7 App Demo</title>
+			<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+			<h:outputScript library="js" name="index.js" />
 		</ui:define>
-	</ui:composition>	
+
+		<ui:define name="content">
+			<div class="container">
+				<h2>JavaEE7 Sample Application</h2>
+				<br/>
+				<div class="row">
+					<div id="tabHotels" class="col-md-4 main-content" style="overflow:auto; margin-left:20px">
+						<h:dataTable value="#{IndexBean.hotels}" var="h" styleClass="table table-stripe table-hover" columnClasses="caption,location,location">
+							<h:column>#{h.hotelName}</h:column>
+							<h:column>#{h.latitude}</h:column>
+							<h:column>#{h.longitude}</h:column>
+						</h:dataTable>
+					</div>
+					<div class="col-md-7">
+						<div id="map" class="main-content"></div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
 </body> 
 </html>
