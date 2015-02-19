@@ -37,7 +37,7 @@ repositories {
 dependencies {
 	compile 'com.fasterxml.jackson.core:jackson-databind:2.5.1'
 	compile 'org.glassfish.jersey.core:jersey-client:2.16'
-	compile 'org.glassfish.jersey.connectors:jersey-apache-connector:2.16'	
+	compile 'org.glassfish.jersey.connectors:jersey-apache-connector:2.16'
     providedCompile 'javax:javaee-api:7.0'
     providedCompile 'org.projectlombok:lombok:1.16.2'
     testCompile 'junit:junit:4.11'
