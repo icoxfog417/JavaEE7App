@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
@@ -35,5 +36,12 @@ public class HotelService {
     	return hotels.toArray(new Hotel[hotels.size()]);
     }
 
+    @GET
+    @Path("/{hotelNo}")
+    @Produces({ "application/json" })
+    public Hotel get(@PathParam("hotelNo") String hotelNo){    	
+    	return RakutenTravelApi.getHotelInfo(hotelNo).orElse(new Hotel());
+    }
+    
 }
 

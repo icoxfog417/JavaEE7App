@@ -11,6 +11,11 @@ body {
 .location{
 	display:none;
 
+.infoView{
+	width: 260px;
+	height: 200px;
+}
+
 #map{
 	width: 100%;
 }
