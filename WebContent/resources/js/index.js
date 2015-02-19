@@ -61,6 +61,11 @@ function setMarkers(map){
 }
 
 
+/**
+ * Open information window
+ * @param map
+ * @param marker
+ */
 function openInfoWindow(map, marker){
 	var contentFormat = "<div class='infoView'><TITLE><ACCESS><TEL><IMG></div>";
 	contentFormat = contentFormat.replace("<TITLE>", "<a href='{link}' target='_blank'>{name}</a><br/>");
@@ -90,12 +95,13 @@ $(function(){
 		initialize();		
 	}, 500);
 	
-	//by css is not work...
+	//table coloring (by css is not work...)
 	$("tr.hotelinfo").hover(
 		function(){ $(this).css("background-color", "gainsboro") },
 		function(){ $(this).css("background-color", "white") }
 	)
 	
+	//when click the list, open the information window
 	$(".hotelinfo").click(function(){
 		var no = $(this).closest("tr").find(".caption").find("span").get(0).id;
 		var target = null;

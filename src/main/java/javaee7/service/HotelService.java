@@ -13,7 +13,7 @@ import javaee7.model.Hotel;
 import javaee7.service.api.RakutenTravelApi;
 
 /**
- * Session Bean implementation class HotelService
+ * RESTful Web API
  */
 @Path("/hotels")
 public class HotelService {
@@ -25,6 +25,12 @@ public class HotelService {
     public HotelService() {
     }
     
+    /**
+     * find hotels by location
+     * @param lat
+     * @param lng
+     * @return
+     */
     @GET
     @Path("/find")
     @Produces({ "application/json" })
@@ -36,6 +42,11 @@ public class HotelService {
     	return hotels.toArray(new Hotel[hotels.size()]);
     }
 
+    /**
+     * get hotel information from hotel no (read parameter from path).
+     * @param hotelNo
+     * @return
+     */
     @GET
     @Path("/{hotelNo}")
     @Produces({ "application/json" })

@@ -66,9 +66,11 @@ public class RakutenTravelApi {
     	return hotels;
 	}
 	
-	/*
-	 * Get hotel information
-	 * */
+	/**
+	 * Get hotel information from hotelNo
+	 * @param hotelNo
+	 * @return
+	 */
 	public static Optional<Hotel> getHotelInfo(String hotelNo){
 		// create url
         String apiKey = getApiKey();

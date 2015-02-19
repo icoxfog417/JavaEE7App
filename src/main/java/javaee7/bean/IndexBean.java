@@ -11,6 +11,10 @@ import java.util.Arrays;
 import javaee7.model.Hotel;
 import javaee7.service.api.RakutenTravelApi;
 
+/**
+ * Backing Bean for index.xhtml
+ *
+ */
 @Named("IndexBean")
 @RequestScoped
 public class IndexBean implements Serializable{
@@ -20,6 +24,9 @@ public class IndexBean implements Serializable{
 	public IndexBean(){
 	}
 	
+	/**
+	 * fetch initial hotels data
+	 */
 	@PostConstruct
 	public void initialize() {
 		this.hotels = RakutenTravelApi.findHotels(0, 0);
