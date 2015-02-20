@@ -9,4 +9,4 @@ Confirm site on GlassFish 4.1 (Doesn't work on Wildfly because its httpclient do
 
 ## Application Image
 
-![javaee7_application.PNG](./javaee7_application.PNG)
+![applicationDemo.PNG](./applicationDemo.PNG)
