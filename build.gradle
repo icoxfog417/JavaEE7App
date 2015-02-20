@@ -21,7 +21,7 @@ sourceSets {
 }
 
 eclipse {
-	pathVariables 'GRADLE_USER_HOME': gradle.gradleUserHomeDir
+    pathVariables 'GRADLE_USER_HOME': gradle.gradleUserHomeDir
 }
 
 javadoc {
@@ -35,9 +35,9 @@ repositories {
 //main dependencis: javax:javaee-api:7.0
 //to use javax.ws.rs.client.Client: org.glassfish.jersey.core:jersey-client (or org.jboss.resteasy:resteasy-jaxrs:3.0.10.Final)
 dependencies {
-	compile 'com.fasterxml.jackson.core:jackson-databind:2.5.1'
-	compile 'org.glassfish.jersey.core:jersey-client:2.16'
-	compile 'org.glassfish.jersey.connectors:jersey-apache-connector:2.16'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.1'
+    compile 'org.glassfish.jersey.core:jersey-client:2.16'
+    compile 'org.glassfish.jersey.connectors:jersey-apache-connector:2.16'
     providedCompile 'javax:javaee-api:7.0'
     providedCompile 'org.projectlombok:lombok:1.16.2'
     testCompile 'junit:junit:4.11'

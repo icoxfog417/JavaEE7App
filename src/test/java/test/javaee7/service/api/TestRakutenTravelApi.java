@@ -12,12 +12,12 @@ import javaee7.service.api.RakutenTravelApi;
 
 public class TestRakutenTravelApi {
 
-	@Test
-	public void test() {
-		ArrayList<Hotel> hotels = RakutenTravelApi.findHotels(0, 0);
-		for(Hotel h : hotels){
-			System.out.println(h.getHotelName());			
-		}
-	}
+    @Test
+    public void test() {
+        ArrayList<Hotel> hotels = RakutenTravelApi.findHotels(0, 0);
+        for(Hotel h : hotels){
+            System.out.println(h.getHotelName());            
+        }
+    }
 
 }

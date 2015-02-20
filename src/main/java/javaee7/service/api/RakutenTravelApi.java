@@ -33,51 +33,51 @@ import javaee7.model.Hotel;
  *
  */
 public class RakutenTravelApi {
-	private final static String SEARCH_API_FORMAT = "https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20131024?applicationId=%s&latitude=%s&longitude=%s&searchRadius=2&datumType=1";
-	private final static String INFO_API_FORMAT = "https://app.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20131024?applicationId=%s&hotelNo=%s&datumType=1";
-	private final static String RESOURCE_PATH = "resources.secrets";
-	private final static double defaultLat = 35.694441;
-	private final static double defaultLng = 139.692537;
-	
-	/**
-	 * Find the hotel around directed location.
-	 * @param lat: latitude
-	 * @param lng: longitude
-	 * @return
-	 */
-	public static ArrayList<Hotel> findHotels(double lat, double lng){
-		// create url
+    private final static String SEARCH_API_FORMAT = "https://app.rakuten.co.jp/services/api/Travel/SimpleHotelSearch/20131024?applicationId=%s&latitude=%s&longitude=%s&searchRadius=2&datumType=1";
+    private final static String INFO_API_FORMAT = "https://app.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20131024?applicationId=%s&hotelNo=%s&datumType=1";
+    private final static String RESOURCE_PATH = "resources.secrets";
+    private final static double defaultLat = 35.694441;
+    private final static double defaultLng = 139.692537;
+    
+    /**
+     * Find the hotel around directed location.
+     * @param lat: latitude
+     * @param lng: longitude
+     * @return
+     */
+    public static ArrayList<Hotel> findHotels(double lat, double lng){
+        // create url
         String apiKey = getApiKey();
         String url = "";
         if(lat > 0 && lng > 0){
             url = String.format(SEARCH_API_FORMAT, apiKey, lat, lng);
         }else{
-        	url = String.format(SEARCH_API_FORMAT, apiKey, defaultLat, defaultLng);
+            url = String.format(SEARCH_API_FORMAT, apiKey, defaultLat, defaultLng);
         }
         
         // access api
         Client client = createClient();
-    	WebTarget target = client.target(URI.create(url));
+        WebTarget target = client.target(URI.create(url));
         String response = target.request().get(String.class);
         
         // parse response (json format)
         ArrayList<Hotel> hotels = parseHotels(response);
-    	
-    	return hotels;
-	}
-	
-	/**
-	 * Get hotel information from hotelNo
-	 * @param hotelNo
-	 * @return
-	 */
-	public static Optional<Hotel> getHotelInfo(String hotelNo){
-		// create url
+        
+        return hotels;
+    }
+    
+    /**
+     * Get hotel information from hotelNo
+     * @param hotelNo
+     * @return
+     */
+    public static Optional<Hotel> getHotelInfo(String hotelNo){
+        // create url
         String apiKey = getApiKey();
         String url = String.format(INFO_API_FORMAT, apiKey, hotelNo);
         
         Client client = createClient();
-    	WebTarget target = client.target(URI.create(url));
+        WebTarget target = client.target(URI.create(url));
         String response = target.request().get(String.class);
         
         // parse response (json format)
@@ -85,55 +85,55 @@ public class RakutenTravelApi {
         
         Hotel hotel = null;
         if(hotels.size() > 0){
-        	hotel = hotels.get(0);
+            hotel = hotels.get(0);
         }
         
         return Optional.ofNullable(hotel);
-	}
-	
-	
-	/**
-	 * Parse the hotels json
-	 * @param hotelsNode
-	 * @return
-	 */
-	private static ArrayList<Hotel> parseHotels(String hotelsJson){
-		ObjectMapper mapper = new ObjectMapper();
-		ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+    }
+    
+    
+    /**
+     * Parse the hotels json
+     * @param hotelsNode
+     * @return
+     */
+    private static ArrayList<Hotel> parseHotels(String hotelsJson){
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Hotel> hotels = new ArrayList<Hotel>();
         
         try {
             JsonNode rootNode = mapper.readTree(hotelsJson);
             JsonNode hotelsNode = rootNode.get("hotels");
 
-        	for (final JsonNode hotelItem : hotelsNode) {
-				JsonNode hotel = hotelItem.get("hotel");
-    	    	for (final JsonNode info : hotel) {
-    	    		if(info.get("hotelBasicInfo") != null){
-    	    			JsonNode baseInfo = info.get("hotelBasicInfo");
-    	    			Hotel h = mapper.readValue(baseInfo.toString(), Hotel.class);
-    	    			hotels.add(h);
-    	    		}
-    	    	}
-			}
+            for (final JsonNode hotelItem : hotelsNode) {
+                JsonNode hotel = hotelItem.get("hotel");
+                for (final JsonNode info : hotel) {
+                    if(info.get("hotelBasicInfo") != null){
+                        JsonNode baseInfo = info.get("hotelBasicInfo");
+                        Hotel h = mapper.readValue(baseInfo.toString(), Hotel.class);
+                        hotels.add(h);
+                    }
+                }
+            }
         }catch(IOException ex){
-        	System.out.println(ex);
+            System.out.println(ex);
         }
-	    return hotels;
-	}
-	
-	/**
-	 * Create http access client.
-	 * It reads proxy information from resource file(secrets.properties's "HTTP_PROXY").
-	 * @return
-	 */
-	private static Client createClient(){
-    	ResourceBundle resouce = ResourceBundle.getBundle(RESOURCE_PATH);
+        return hotels;
+    }
+    
+    /**
+     * Create http access client.
+     * It reads proxy information from resource file(secrets.properties's "HTTP_PROXY").
+     * @return
+     */
+    private static Client createClient(){
+        ResourceBundle resouce = ResourceBundle.getBundle(RESOURCE_PATH);
         String httpProxy = resouce.getString("HTTP_PROXY");
-		
+        
         Client client = null;
         
         if(httpProxy.isEmpty()){
-        	client = ClientBuilder.newClient();        	
+            client = ClientBuilder.newClient();            
         }else{
             ClientConfig config = new ClientConfig();
             config.connectorProvider(new ApacheConnectorProvider());
@@ -142,18 +142,18 @@ public class RakutenTravelApi {
         }
         
         return client;
-	}
-	
-	/**
-	 * Get Rakuten API Key
-	 * It reads api key from resource file (secrets.properties's "API_KEY").
-	 * @return
-	 */
-	private static String getApiKey(){
-    	ResourceBundle resouce = ResourceBundle.getBundle(RESOURCE_PATH);
+    }
+    
+    /**
+     * Get Rakuten API Key
+     * It reads api key from resource file (secrets.properties's "API_KEY").
+     * @return
+     */
+    private static String getApiKey(){
+        ResourceBundle resouce = ResourceBundle.getBundle(RESOURCE_PATH);
         String apiKey = resouce.getString("API_KEY");
         return apiKey;
-	}
-	
-	
+    }
+    
+    
 }

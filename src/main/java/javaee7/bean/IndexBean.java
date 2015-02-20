@@ -19,25 +19,25 @@ import javaee7.service.api.RakutenTravelApi;
 @RequestScoped
 public class IndexBean implements Serializable{
 
-	private ArrayList<Hotel> hotels = new ArrayList<Hotel>();
-	
-	public IndexBean(){
-	}
-	
-	/**
-	 * fetch initial hotels data
-	 */
-	@PostConstruct
-	public void initialize() {
-		this.hotels = RakutenTravelApi.findHotels(0, 0);
-	}
+    private ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+    
+    public IndexBean(){
+    }
+    
+    /**
+     * fetch initial hotels data
+     */
+    @PostConstruct
+    public void initialize() {
+        this.hotels = RakutenTravelApi.findHotels(0, 0);
+    }
 
-	public ArrayList<Hotel> getHotels() {
-		return hotels;
-	}
+    public ArrayList<Hotel> getHotels() {
+        return hotels;
+    }
 
-	public void setHotels(ArrayList<Hotel> hotels) {
-		this.hotels = hotels;
-	}
+    public void setHotels(ArrayList<Hotel> hotels) {
+        this.hotels = hotels;
+    }
 
 }
