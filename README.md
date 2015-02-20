@@ -6,3 +6,7 @@ simple JavaEE7 web application. [JavaDoc](http://icoxfog417.github.io/JavaEE7App
 * Access to Web API
 
 Confirm site on GlassFish 4.1 (Doesn't work on Wildfly because its httpclient doesn't support proxy).  
+
+## Application Image
+
+![javaee7_application.PNG](./javaee7_application.PNG)
